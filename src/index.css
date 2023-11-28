@@ -86,11 +86,6 @@ header {
   padding: 0 20px;
 }
 
-.dsc-header-client {
-  background: var(--dsc-color-bg-secondary);
-  color: var(--dsc-color-font-primary);
-}
-
 .dsc-header-admin {
   background: var(--dsc-color-bg-quaternary);
   color: var(--dsc-color-font-tertiary);
@@ -197,18 +192,6 @@ nav a {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
-
-.dsc-btn-blue {
-  border: none;
-  background: var(--dsc-color-btn-primary);
-  color: var(--dsc-color-btn-inverse);
-}
-
-.dsc-btn-white {
-  background-color: var(--dsc-color-btn-inverse);
-  color: var(--dsc-color-btn-primary);
-  border: 1px solid var(--dsc-color-btn-primary);
 }
 
 .dsc-btn-next-page {
