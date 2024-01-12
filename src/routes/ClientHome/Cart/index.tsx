@@ -1,5 +1,5 @@
 import "./styless.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as cartService from "../../../services/cart-service";
 import { OrderDTO, OrderItemDTO } from "../../../models/oder";
 
