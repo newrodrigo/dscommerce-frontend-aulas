@@ -9,16 +9,22 @@ import { ProductDTO } from "../../../models/product";
 export default function Catalog() {
   const [products, setProducts] = useState<ProductDTO[]>([]);
 
+  const [productName, setProductName] = useState("");
+
   useEffect(() => {
-    productService.findAll().then((response) => {
+    productService.findPageRequest(0, productName).then((response) => {
       setProducts(response.data.content);
     });
-  }, []);
+  }, [productName]);
+
+  function handleSearch(searchText: string) {
+    setProductName(searchText);
+  }
 
   return (
     <main>
       <section id="catalog-section" className="dsc-container">
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} />
 
         <div className="dsc-catalog-cards dsc-mt20 dsc-mb20">
           {products.map((product) => (
