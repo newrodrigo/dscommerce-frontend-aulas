@@ -7,14 +7,9 @@ export default function AdminHome() {
   const [user, setUser] = useState<UserDTO>();
 
   useEffect(() => {
-    useService
-      .findMe()
-      .then((response) => {
-        setUser(response.data);
-      })
-      .catch((error) => {
-        console.log("Error", error);
-      });
+    useService.findMe().then((response) => {
+      setUser(response.data);
+    });
   }, []);
 
   return (
