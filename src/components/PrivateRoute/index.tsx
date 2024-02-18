@@ -1,6 +1,5 @@
 import { Navigate } from "react-router-dom";
-import * as authService from '../../services/auth-service';
-
+import * as authService from "../../services/auth-service";
 
 type Props = {
   children: JSX.Element;
