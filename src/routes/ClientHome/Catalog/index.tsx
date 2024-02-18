@@ -5,6 +5,7 @@ import SearchBar from "../../../components/SearchBar";
 import * as productService from "../../../services/product-service";
 import { useEffect, useState } from "react";
 import { ProductDTO } from "../../../models/product";
+import { isAuthenticated } from "../../../services/auth-service";
 
 type QueryParams = {
   page: number;
@@ -22,6 +23,7 @@ export default function Catalog() {
   const [isLastPage, setIsLastPage] = useState();
 
   useEffect(() => {
+    console.log("AUTENTICADO", isAuthenticated());
     productService
       .findPageRequest(queryParams.page, queryParams.name)
       .then((response) => {
