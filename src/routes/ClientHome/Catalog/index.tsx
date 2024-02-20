@@ -12,14 +12,14 @@ type QueryParams = {
 };
 
 export default function Catalog() {
+  const [isLastPage, setIsLastPage] = useState(false);
+
   const [products, setProducts] = useState<ProductDTO[]>([]);
 
   const [queryParams, setQueryParams] = useState<QueryParams>({
     page: 0,
     name: "",
   });
-
-  const [isLastPage, setIsLastPage] = useState();
 
   useEffect(() => {
     productService
