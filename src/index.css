@@ -382,11 +382,14 @@ nav a {
 }
 
 .dsc-dialog-box h2 {
-  font: 20px;
+  font-size: 20px;
   color: var(--dsc-color-font-primary);
   margin-bottom: 20px;
 }
 
 .dsc-dialog-btn-container {
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }

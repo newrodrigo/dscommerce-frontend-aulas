@@ -7,6 +7,7 @@ import { ProductDTO } from "../../../models/product";
 import SearchBar from "../../../components/SearchBar";
 import ButtonNextPage from "../../../components/ButtonNextPage";
 import DialogInfo from "../../../components/DialogInfo";
+import DialogConfirmation from "../../../components/DialogConfirmation";
 
 type QueryParams = {
   page: number;
@@ -16,7 +17,13 @@ type QueryParams = {
 export default function ProductListing() {
   const [dialogInfoData, setDialogInfoData] = useState({
     visible: false,
-    message: "Operação com sucesso!",
+    message: "Excluído com sucesso!",
+  });
+
+  const [dialogConfirmationData, setDialogConfirmationData] = useState({
+    visible: false,
+    message:
+      "Tem certeza de que deseja excluir este produto? Esta ação não poderá ser desfeita.",
   });
 
   const [isLastPage, setIsLastPage] = useState(false);
@@ -52,7 +59,12 @@ export default function ProductListing() {
   }
 
   function handleDeleteClick() {
-    setDialogInfoData({ ...dialogInfoData, visible: true });
+    setDialogConfirmationData({ ...dialogConfirmationData, visible: true });
+  }
+
+  function handleDialogConfirmationAnswer(answer: boolean) {
+    console.log("Resposta", answer);
+    setDialogConfirmationData({ ...dialogConfirmationData, visible: false });
   }
 
   return (
@@ -120,6 +132,13 @@ export default function ProductListing() {
         <DialogInfo
           message={dialogInfoData.message}
           onDialogClose={handleDialogInfoClose}
+        />
+      )}
+
+      {dialogConfirmationData.visible && (
+        <DialogConfirmation
+          message={dialogConfirmationData.message}
+          onDialogAnswer={handleDialogConfirmationAnswer}
         />
       )}
     </main>
