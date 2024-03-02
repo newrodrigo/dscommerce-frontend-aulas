@@ -1,5 +1,5 @@
 import "./styles.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as forms from "../../../utils/forms";
 import * as productService from "../../../services/product-service";
@@ -9,13 +9,21 @@ import FormTextArea from "../../../components/FormTextArea";
 import { CategoryDTO } from "../../../models/category";
 import FormSelect from "../../../components/FormSelect";
 import { selectStyles } from "../../../utils/select";
+import DialogInfo from "../../../components/DialogInfo";
 
 export default function ProductForm() {
   const params = useParams();
 
+  const navigate = useNavigate();
+
   const isEditing = params.productId !== "create";
 
   const [categories, setCategories] = useState<CategoryDTO[]>([]);
+
+  const [dialogInfoData, setDialogInfoData] = useState({
+    visible: false,
+    message: "Cadastrado com sucesso!",
+  });
 
   const [formData, setFormData] = useState<any>({
     name: {
@@ -100,7 +108,29 @@ export default function ProductForm() {
       setFormData(formDataValidated);
       return;
     }
-    //console.log(forms.toValues(formData));
+
+    const requestBody = forms.toValues(formData);
+    if (isEditing) {
+      requestBody.id = params.productId;
+    }
+
+    const request = isEditing
+      ? productService.updateRequest(requestBody)
+      : productService.insertRequest(requestBody);
+
+    request.then(() => {
+      setDialogInfoData({
+        ...dialogInfoData,
+        visible: true,
+      });
+    });
+  }
+  function handleDialogInfoClose() {
+    setDialogInfoData({
+      ...dialogInfoData,
+      visible: false,
+    });
+    navigate("/admin/products/");
   }
 
   return (
@@ -181,6 +211,12 @@ export default function ProductForm() {
           </form>
         </div>
       </section>
+      {dialogInfoData.visible && (
+        <DialogInfo
+          message={dialogInfoData.message}
+          onDialogClose={handleDialogInfoClose}
+        />
+      )}
     </main>
   );
 }
