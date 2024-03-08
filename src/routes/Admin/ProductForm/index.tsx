@@ -118,12 +118,20 @@ export default function ProductForm() {
       ? productService.updateRequest(requestBody)
       : productService.insertRequest(requestBody);
 
-    request.then(() => {
-      setDialogInfoData({
-        ...dialogInfoData,
-        visible: true,
+    request
+      .then(() => {
+        setDialogInfoData({
+          ...dialogInfoData,
+          visible: true,
+        });
+      })
+      .catch((error) => {
+        const newInputs = forms.setBackEndErros(
+          formData,
+          error.response.data.errors
+        );
+        setFormData(newInputs);
       });
-    });
   }
   function handleDialogInfoClose() {
     setDialogInfoData({
