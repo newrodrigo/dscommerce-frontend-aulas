@@ -1,30 +1,60 @@
-# React + TypeScript + Vite
+# DSCommerce
+[![NPM](https://img.shields.io/npm/l/react)]([https://github.com/newrodrigo/dslist/blob/main/LICENSE](https://github.com/newrodrigo/dscommerce-frontend-aulas/blob/main/LICENSE)) 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Sobre o projeto
+O sistema mantém cadastros de usuários, produtos e categorias. Os usuários têm informações pessoais e podem navegar pelo catálogo de produtos, adicionar itens ao carrinho e fazer pedidos. Administradores podem gerenciar usuários, produtos e categorias.
 
-Currently, two official plugins are available:
+## Layout Mobile
+![Login](https://raw.githubusercontent.com/newrodrigo/assets/9a0743685030124ab1520dcb06a40bb07fdc08d1/dscommerce/login-mobile.jpg)
+![Products](https://raw.githubusercontent.com/newrodrigo/assets/9a0743685030124ab1520dcb06a40bb07fdc08d1/dscommerce/products-mobile.jpg)
+![Cart](https://raw.githubusercontent.com/newrodrigo/assets/9a0743685030124ab1520dcb06a40bb07fdc08d1/dscommerce/cart-mobile.jpg)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Layout Web
+![Product-Details](https://raw.githubusercontent.com/newrodrigo/assets/9a0743685030124ab1520dcb06a40bb07fdc08d1/dscommerce/public-product-details-web.jpg)
+![Admin-Products](https://raw.githubusercontent.com/newrodrigo/assets/9a0743685030124ab1520dcb06a40bb07fdc08d1/dscommerce/admin-products-web.jpg)
+![Admin-Update-Product](https://raw.githubusercontent.com/newrodrigo/assets/9a0743685030124ab1520dcb06a40bb07fdc08d1/dscommerce/admin-update-product-web.jpg)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Modelo conceitual
+Este é o modelo conceitual do sistema DSCommerce. Considerações:
+- Cada item de pedido (OrderItem) corresponde a um produto no pedido, com uma
+quantidade. Sendo que o preço também é armazenado no item de pedido por
+questões de histórico (se o preço do produto mudar no futuro, o preço do item de
+pedido continua registrado com o preço real que foi vendido na época).
 
-- Configure the top-level `parserOptions` property like this:
+- Um usuário pode ter um ou mais "roles", que são os perfis de acesso deste usuário
+no sistema (client, admin).
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+![Modelo Conceitual](https://raw.githubusercontent.com/newrodrigo/assets/main/dscommerce/conceptual%20model.jpg)
+
+# Tecnologias utilizadas
+## Front end
+- HTML / CSS/ JS / TypeScript
+- Axios
+- JWT
+- OAUTH2
+
+
+# Como executar o projeto
+## Frontend
+Pré-requisitos: 
+
+```bash
+# clonar repositório
+git clone git@github.com:newrodrigo/dscommerce-frontend-aulas.git
+
+# entrar na pasta do projeto front end web
+cd dscommerce-frontend-aulas
+
+# instalar dependências
+yarn
+
+# executar o projeto
+yarn dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+# Autor
+
+Rodrigo Oliveira Cerqueira
+
+[LinkedIn](https://www.linkedin.com/in/rodrigooc)
